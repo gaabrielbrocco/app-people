@@ -1,35 +1,52 @@
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
-import React from "react";
 
 export default function Detalhes({ navigation, route }) {
   return (
     <View style={styles.container}>
-      <View style={styles.datails}>
-        <Text style={styles.text}>Nome Completo: {route.params.name}</Text>
-        <Text style={styles.text}>Altura: {route.params.height}</Text>
-        <Text style={styles.text}>Peso: {route.params.mass}</Text>
-        <Text style={styles.text}>
-          Cor do cabelo: {route.params.hair_color}
-        </Text>
-        <Text style={styles.text}>Cor da pele: {route.params.skin_color}</Text>
-        <Text style={styles.text}>Cor do olho: {route.params.eye_color}</Text>
+      <View style={styles.details}>
+        <View style={styles.card}>
+          <Text style={styles.textTitle}>Nome Completo:</Text>
+          <Text style={styles.text}>{route.params.name}</Text>
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.textTitle}>Altura:</Text>
+          <Text style={styles.text}>{route.params.height}</Text>
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.textTitle}>Peso:</Text>
+          <Text style={styles.text}>{route.params.mass}</Text>
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.textTitle}>Cor do cabelo:</Text>
+          <Text style={styles.text}>{route.params.hair_color}</Text>
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.textTitle}>Cor da pele:</Text>
+          <Text style={styles.text}>{route.params.skin_color}</Text>
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.textTitle}>Cor do olho:</Text>
+          <Text style={styles.text}>{route.params.eye_color}</Text>
+        </View>
       </View>
 
-      <View>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
             navigation.navigate("Naves", { starships: route.params.starships })
           }
         >
-          <Text>NAVES</Text>
+          <Text style={styles.textButton}>NAVES</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Filmes")}
+          onPress={() =>
+            navigation.navigate("Filmes", { films: route.params.films })
+          }
         >
-          <Text>FILMES</Text>
+          <Text style={styles.textButton}>FILMES</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -42,15 +59,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#030712",
+    backgroundColor: "#282C34",
   },
-  text: {
-    fontSize: 20,
-    marginBottom: 2,
-    fontWeight: "bold",
-  },
-  datails: {
-    backgroundColor: "#fff",
+  details: {
+    backgroundColor: "#EEEEEE",
     borderRadius: 12,
     margin: 20,
     padding: 20,
@@ -59,13 +71,37 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 5,
   },
+  card: {
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  textTitle: {
+    fontSize: 20,
+    marginBottom: 2,
+    fontWeight: "bold",
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 2,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: 20,
+  },
   button: {
-    backgroundColor: "orange",
+    backgroundColor: "#f96527",
     padding: 20,
     marginTop: 15,
     borderRadius: 8,
-    width: 200,
+    width: "45%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  textButton: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

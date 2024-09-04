@@ -6,9 +6,12 @@ import Detalhes from "./src/pages/Detalhes";
 import Naves from "./src/pages/Naves";
 import Filmes from "./src/pages/Filmes";
 import Sobre from "./src/pages/Sobre";
+import { StatusBar } from "react-native";
 
 export default function App() {
   const Stack = createStackNavigator();
+
+  <StatusBar barStyle="light-content" backgroundColor="#134B70" />;
 
   return (
     <NavigationContainer>

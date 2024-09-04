@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 
 export default function Naves({ route }) {
   const { starships } = route.params;
@@ -8,8 +8,6 @@ export default function Naves({ route }) {
 
   useEffect(() => {
     const buscaNaves = async () => {
-      // ja busca antes e verifica se tem ou não naves
-      // que assim não precisa processar
       if (!starships.length) return;
       setLoading(true);
 
@@ -29,16 +27,19 @@ export default function Naves({ route }) {
 
   if (loading) {
     return (
-      <View>
-        <Text>carregando...</Text>
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#f96527" />
+        <Text style={styles.loadingText}>Carregando...</Text>
       </View>
     );
   }
 
   if (!naves.length) {
     return (
-      <View>
-        <Text>Não há naves disponíveis para esse personagem!</Text>
+      <View style={styles.messageContainer}>
+        <Text style={styles.messageText}>
+          Não há naves disponíveis para esse personagem!
+        </Text>
       </View>
     );
   }
@@ -47,9 +48,12 @@ export default function Naves({ route }) {
     <View style={styles.container}>
       {naves.map((nave) => {
         return (
-          <View style={styles.datails}>
-            <Text>{nave.name}</Text>
-            <Text>{nave.model}</Text>
+          <View style={styles.cards} key={nave.name}>
+            <View style={styles.datails}>
+              <Text style={styles.text}>Nome: {nave.name}</Text>
+              <Text style={styles.text}>Modelo: {nave.model}</Text>
+              <Text style={styles.text}>Passageiros: {nave.passengers}</Text>
+            </View>
           </View>
         );
       })}
@@ -62,17 +66,60 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#282C34",
     padding: 20,
-    backgroundColor: "#030712",
   },
   datails: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    margin: 20,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
     padding: 20,
-    width: "100%",
+    width: 300,
     alignItems: "center",
     justifyContent: "center",
-    elevation: 5,
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  text: {
+    fontSize: 18,
+    marginTop: 10,
+    marginBottom: 10,
+    fontWeight: "bold",
+    color: "#333333",
+  },
+  cards: {
+    marginTop: 20,
+    backgroundColor: "#F5F5F5",
+    borderRadius: 16,
+    padding: 15,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#282C34",
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  messageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#282C34",
+  },
+  messageText: {
+    fontSize: 18,
+    color: "#FFFFFF",
+    textAlign: "center",
+    marginHorizontal: 20,
   },
 });
