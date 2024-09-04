@@ -60,7 +60,8 @@ export default function Filmes({ route }) {
                 <Text style={styles.text}>Título: {filme.title}</Text>
                 <Text style={styles.text}>Diretor: {filme.director}</Text>
                 <Text style={styles.text}>
-                  Lançamento: {filme.release_date}
+                  Lançamento:{" "}
+                  {filme.release_date.split("-").reverse().join("/")}
                 </Text>
               </View>
             </View>
