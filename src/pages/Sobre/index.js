@@ -1,7 +1,9 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default function Sobre() {
  return (
-   <View/>
+  <View>
+    <Text>TESTE</Text>  
+  </View>
   );
 }
