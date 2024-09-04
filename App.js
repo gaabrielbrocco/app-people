@@ -6,17 +6,30 @@ import Detalhes from "./src/pages/Detalhes";
 import Naves from "./src/pages/Naves";
 import Filmes from "./src/pages/Filmes";
 import Sobre from "./src/pages/Sobre";
-import { StatusBar } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 export default function App() {
   const Stack = createStackNavigator();
 
-  <StatusBar barStyle="light-content" backgroundColor="#134B70" />;
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="ListaPersonagens" component={ListaPersonagens} />
+        <Stack.Screen
+          name="ListaPersonagens"
+          component={ListaPersonagens}
+          options={({ navigation }) => ({
+            title: 'Lista de Personagens',
+            headerRight: () => (
+              <TouchableOpacity
+                style={styles.buttonSobre}
+                onPress={() => navigation.navigate("Sobre")}
+                color="#000"
+              >
+                <Text style={styles.textButton}>Sobre</Text>
+              </TouchableOpacity>
+            ),
+          })}
+        />
         <Stack.Screen name="Detalhes" component={Detalhes} />
         <Stack.Screen name="Naves" component={Naves} />
         <Stack.Screen name="Filmes" component={Filmes} />
@@ -25,3 +38,19 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  buttonSobre: {
+    marginRight: 10,
+    borderRadius: 20, 
+    paddingHorizontal: 12, 
+    paddingVertical: 8, 
+    backgroundColor: '#282C34',
+  },
+  
+  textButton: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+  }
+});
