@@ -1,8 +1,16 @@
-import React, { useRef, useEffect } from 'react';
-import { View, Text, Animated, StyleSheet, Dimensions, Easing, Image } from 'react-native';
-import gremio from "../../../assets/gremio.jpg"
+import React, { useRef, useEffect } from "react";
+import {
+  View,
+  Text,
+  Animated,
+  StyleSheet,
+  Dimensions,
+  Easing,
+  Image,
+} from "react-native";
+import gremio from "../../../assets/gremio.jpg";
 
-const { screenHeight } = Dimensions.get('window');
+const { height: screenHeight } = Dimensions.get("window");
 
 export default function Sobre() {
   const animatedValue = useRef(new Animated.Value(screenHeight)).current;
@@ -10,7 +18,7 @@ export default function Sobre() {
   useEffect(() => {
     Animated.timing(animatedValue, {
       toValue: -screenHeight,
-      duration: 40000, 
+      duration: 40000,
       useNativeDriver: true,
       easing: Easing.linear,
     }).start();
@@ -18,21 +26,27 @@ export default function Sobre() {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.textContainer, { transform: [{ translateY: animatedValue }] }]}>
+      <Animated.View
+        style={[
+          styles.textContainer,
+          { transform: [{ translateY: animatedValue }] },
+        ]}
+      >
         <Text style={styles.text}>
-          Há muito tempo, em uma galáxia muito, muito distante... {'\n\n'}
-          Dois estudantes desenvolveram um aplicativo para consumir uma API do Star Wars.{'\n\n'}
-          Bernardo Sozo Fattini e Gabriel Brocco de Oliveira.{'\n\n'}
-          {'\n\n'}
-          Com os E-Mails e RAs: 1134300@atitus.edu.br e 1135058@atitus.edu.br, respectivamente.{'\n\n'}
-          {'\n\n'}
-          {'\n\n'}
-          {'\n\n'}
+          Há muito tempo, em uma galáxia muito, muito distante... {"\n\n"}
+          Dois estudantes desenvolveram um aplicativo para consumir uma API do
+          Star Wars.{"\n\n"}
+          Bernardo Sozo Fattini e Gabriel Brocco de Oliveira.{"\n\n"}
+          {"\n\n"}
+          Com os E-Mails e RAs: 1134300@atitus.edu.br e 1135058@atitus.edu.br,
+          respectivamente.{"\n\n"}
+          {"\n\n"}
+          {"\n\n"}
+          {"\n\n"}
           Obrigado!
         </Text>
         <View style={styles.image}>
-          <Image 
-            source={gremio}/>
+          <Image source={gremio} />
         </View>
       </Animated.View>
     </View>
@@ -42,27 +56,27 @@ export default function Sobre() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black', 
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
   },
   textContainer: {
-    position: 'absolute',
-    width: '100%',
+    position: "absolute",
+    width: "100%",
     paddingHorizontal: 20,
     marginBottom: 10,
   },
   text: {
-    color: 'yellow',
+    color: "yellow",
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 10,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   image: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
-    marginTop: 50
-  }
+    marginTop: 50,
+  },
 });
