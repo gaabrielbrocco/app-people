@@ -2,14 +2,14 @@ import React, { useRef, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, Dimensions, Easing, Image } from 'react-native';
 import gremio from "../../../assets/gremio.jpg"
 
-const { height } = Dimensions.get('window');
+const { screenHeight } = Dimensions.get('window');
 
 export default function Sobre() {
-  const animatedValue = useRef(new Animated.Value(height * 1)).current;
+  const animatedValue = useRef(new Animated.Value(screenHeight)).current;
 
   useEffect(() => {
     Animated.timing(animatedValue, {
-      toValue: -height,
+      toValue: -screenHeight,
       duration: 40000, 
       useNativeDriver: true,
       easing: Easing.linear,
